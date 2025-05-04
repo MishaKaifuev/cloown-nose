@@ -3,18 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <title>Нажми на нос</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body {
+    html, body {
       margin: 0;
-      background: #111;
+      padding: 0;
+      height: 100%;
+      background-color: #d4841f; /* фон, совпадающий с цветом задника клоуна */
       display: flex;
-      align-items: center;
       justify-content: center;
-      height: 100vh;
+      align-items: center;
     }
+
     img {
-      width: 300px;
+      width: 80vw; /* адаптивная ширина */
+      max-width: 500px;
+      height: auto;
       cursor: pointer;
+      image-rendering: pixelated;
     }
   </style>
 </head>
