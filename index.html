@@ -14,6 +14,7 @@
       justify-content: center;
       align-items: center;
       font-family: 'Press Start 2P', monospace;
+      position: relative;
     }
 
     img {
@@ -39,7 +40,18 @@
       text-align: center;
     }
 
-    /* "8-bit" style */
+    #counter {
+      position: absolute;
+      top: 20px;
+      text-align: center;
+      font-size: 10px;
+      background: #000;
+      color: #0f0;
+      padding: 8px 12px;
+      border: 2px solid #0f0;
+      box-shadow: 2px 2px 0 #0a0;
+    }
+
     @font-face {
       font-family: 'Press Start 2P';
       src: url('https://fonts.gstatic.com/s/pressstart2p/v14/e3t4euO8T-267oIAQAu6jDQyK1n1kO7u.woff2') format('woff2');
@@ -47,18 +59,37 @@
   </style>
 </head>
 <body>
+  <div id="counter">Носов потыкал: 0</div>
   <div id="bubble">Тебе заняться нечем?</div>
   <audio id="boop" src="boop.mp3" preload="auto"></audio>
   <img src="clown.png" id="clown" />
-  
+
   <script>
     const clown = document.getElementById("clown");
     const sound = document.getElementById("boop");
     const bubble = document.getElementById("bubble");
+    const counter = document.getElementById("counter");
+
+    let count = 0;
 
     clown.addEventListener("click", () => {
       sound.currentTime = 0;
       sound.play();
+
+      count++;
+      counter.innerText = `Носов потыкал: ${count}`;
+
+      // фразы на определённых числах
+      if (count === 10) {
+        bubble.innerText = "10? Ты серьёзно?";
+      } else if (count === 20) {
+        bubble.innerText = "Хватит. ХВАТИТ.";
+      } else if (count === 50) {
+        bubble.innerText = "Ты победил клоуна. Или он тебя?";
+      } else {
+        bubble.innerText = "Тебе заняться нечем?";
+      }
+
       bubble.style.display = "block";
 
       setTimeout(() => {
